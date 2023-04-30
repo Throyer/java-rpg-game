@@ -1,4 +1,4 @@
-package com.gihub.throyer;
+package com.gihub.throyer.rpg.main;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

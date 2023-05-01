@@ -1,6 +1,6 @@
-package com.gihub.throyer.rpg.entity;
+package com.github.throyer.rpg.entity;
 
-import com.gihub.throyer.rpg.utils.Direction;
+import com.github.throyer.rpg.utils.Direction;
 import lombok.Getter;
 
 import java.awt.*;

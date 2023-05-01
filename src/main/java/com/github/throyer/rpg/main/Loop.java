@@ -1,7 +1,8 @@
-package com.gihub.throyer.rpg.main;
+package com.github.throyer.rpg.main;
 
 import static java.lang.System.nanoTime;
 import static java.util.Objects.nonNull;
+import static java.util.concurrent.TimeUnit.NANOSECONDS;
 
 public class Loop {
   public static void start(Integer FPS, Thread thread, Runnable runnable) {    
@@ -27,7 +28,7 @@ public class Loop {
       }
 
       if (timer >= 1000000000) {
-        System.out.printf("\rFPS: %s", drawCount);
+        System.out.printf("\rFPS: %s, %sms", drawCount, NANOSECONDS.toMillis(timer));
 
         drawCount = 0;
         timer = 0;

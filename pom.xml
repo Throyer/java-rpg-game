@@ -35,6 +35,22 @@
       <version>5.9.2</version>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>2.20.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>2.20.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-1.2-api</artifactId>
+      <version>2.20.0</version>
+    </dependency>
   </dependencies>
   
   <build>
@@ -52,7 +68,7 @@
               <archive>
                 <manifest>
                   <mainClass>
-                    com.gihub.throyer.rpg.main.Main
+                    com.github.throyer.rpg.main.Main
                   </mainClass>
                 </manifest>
               </archive>
@@ -81,7 +97,7 @@
               <outfile>target/${project.build.finalName}.exe</outfile>
               <icon>${project.basedir}/src/main/resources/${project.name}.ico</icon>
               <classPath>
-                <mainClass>com.gihub.throyer.rpg.main.Main</mainClass>
+                <mainClass>com.github.throyer.rpg.main.Main</mainClass>
               </classPath>
               <jre>
                 <path>jre/</path>
@@ -91,7 +107,7 @@
                 <fileVersion>${project.version}</fileVersion>
                 <txtFileVersion>${project.version}</txtFileVersion>
                 <fileDescription>${project.name}</fileDescription>
-                <copyright>© ${project.inceptionYear} ${project.organization.name} All Rights Reserved</copyright>
+                <copyright>© ${project.inceptionYear} | Throyer | All Rights Reserved</copyright>
                 <productVersion>${project.version}</productVersion>
                 <txtProductVersion>1.0.0.0</txtProductVersion>
                 <productName>${project.name}</productName>

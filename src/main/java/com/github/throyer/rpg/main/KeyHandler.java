@@ -1,4 +1,4 @@
-package com.gihub.throyer.rpg.main;
+package com.github.throyer.rpg.main;
 
 import static java.awt.event.KeyEvent.VK_A;
 import static java.awt.event.KeyEvent.VK_D;

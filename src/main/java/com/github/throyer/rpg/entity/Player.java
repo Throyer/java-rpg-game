@@ -1,15 +1,18 @@
-package com.gihub.throyer.rpg.entity;
+package com.github.throyer.rpg.entity;
 
-import com.gihub.throyer.rpg.utils.Resources;
-import com.gihub.throyer.rpg.main.Game;
-import com.gihub.throyer.rpg.main.KeyHandler;
+import static com.github.throyer.rpg.utils.Direction.DOWN;
+import static com.github.throyer.rpg.utils.Direction.LEFT;
+import static com.github.throyer.rpg.utils.Direction.RIGHT;
+import static com.github.throyer.rpg.utils.Direction.UP;
 
-import java.awt.*;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.stream.Stream;
 
-import static com.gihub.throyer.rpg.utils.Direction.*;
+import com.github.throyer.rpg.main.Game;
+import com.github.throyer.rpg.main.KeyHandler;
+import com.github.throyer.rpg.utils.Resources;
 
 public class Player extends Entity {
   private final Game game;

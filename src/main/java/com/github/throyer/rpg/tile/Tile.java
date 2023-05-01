@@ -1,6 +1,6 @@
-package com.gihub.throyer.rpg.tile;
+package com.github.throyer.rpg.tile;
 
-import com.gihub.throyer.rpg.utils.Resources;
+import com.github.throyer.rpg.utils.Resources;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;

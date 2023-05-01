@@ -1,18 +1,16 @@
-package com.gihub.throyer.rpg.main;
+package com.github.throyer.rpg.main;
+
+import com.github.throyer.rpg.entity.Player;
+import com.github.throyer.rpg.tile.TileManager;
+import lombok.extern.log4j.Log4j2;
+
+import javax.swing.*;
+import java.awt.*;
 
 import static java.awt.Color.BLACK;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-
-import javax.swing.JPanel;
-
-import com.gihub.throyer.rpg.entity.Player;
-import com.gihub.throyer.rpg.tile.TileManager;
-
+@Log4j2
 public class Game extends JPanel implements Runnable {
-
   // SCREEN SETTINGS
   final int originalTileSize = 16; // 16x16 tile
   final int scale = 3;
@@ -23,12 +21,14 @@ public class Game extends JPanel implements Runnable {
   public final int screenHeight = tileSize * maxScreenRow; // 576 px
 
   // FPS
-  int FPS = 60;
+  int TARGET_FPS = 60;
   
-  private TileManager tileManager = new TileManager(this);
+  private final TileManager tileManager = new TileManager(this);
   private Thread thread;
   private final KeyHandler directions = new KeyHandler();
   private final Player player = new Player(this, directions);
+  
+  
   
   public Game() {
     this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -39,6 +39,7 @@ public class Game extends JPanel implements Runnable {
   }
 
   public void start() {
+    log.info("starting game");
     this.thread = new Thread(this);
     thread.start();
   }
@@ -60,7 +61,7 @@ public class Game extends JPanel implements Runnable {
   
   @Override
   public void run() {
-    Loop.start(FPS, thread, () -> {
+    Loop.start(TARGET_FPS, thread, () -> {
       update();
       repaint();
     });

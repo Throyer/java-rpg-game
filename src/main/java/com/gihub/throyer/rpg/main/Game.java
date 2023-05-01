@@ -1,16 +1,15 @@
 package com.gihub.throyer.rpg.main;
 
-import com.gihub.throyer.rpg.entity.Player;
-import com.gihub.throyer.rpg.tile.TileManager;
-
 import static java.awt.Color.BLACK;
-import static java.awt.Color.WHITE;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
+
+import com.gihub.throyer.rpg.entity.Player;
+import com.gihub.throyer.rpg.tile.TileManager;
 
 public class Game extends JPanel implements Runnable {
 

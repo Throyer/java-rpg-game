@@ -1,14 +1,13 @@
 package com.gihub.throyer.rpg.utils;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
+
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.imageio.ImageIO;
 
 public class Resources {
   private Resources() { }

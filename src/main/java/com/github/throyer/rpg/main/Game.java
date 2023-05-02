@@ -19,6 +19,12 @@ public class Game extends JPanel implements Runnable {
   public final int maxScreenRow = 12;
   public final int screenWidth = tileSize * maxScreenColumn; // 768 px
   public final int screenHeight = tileSize * maxScreenRow; // 576 px
+  
+  // WORLD SETTINGS
+  public final int maxWorldColumn = 50;
+  public final int maxWorldRow = 50;
+  public final int worldWidth = tileSize * maxWorldColumn;
+  public final int worldHeight = tileSize * maxWorldRow;
 
   // FPS
   int TARGET_FPS = 60;
@@ -26,10 +32,8 @@ public class Game extends JPanel implements Runnable {
   private final TileManager tileManager = new TileManager(this);
   private Thread thread;
   private final KeyHandler directions = new KeyHandler();
-  private final Player player = new Player(this, directions);
-  
-  
-  
+  public final Player player = new Player(this, directions);
+    
   public Game() {
     this.setPreferredSize(new Dimension(screenWidth, screenHeight));
     this.setBackground(BLACK);

@@ -8,8 +8,8 @@ import java.awt.image.BufferedImage;
 
 @Getter
 public abstract class Entity {
-  protected Integer x = 0;
-  protected Integer y = 0;
+  protected Integer worldX = 0;
+  protected Integer worldY = 0;
   protected Integer speed = 0;
   
   protected BufferedImage imageUpOne;

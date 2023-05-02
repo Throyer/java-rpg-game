@@ -14,22 +14,25 @@ import static java.lang.Integer.parseInt;
 
 @Log4j2
 public class TileManager {
-  private Game game;
+  private final Game game;
   private Map<Integer, Tile> tiles;
-  private Integer[][] map;
+  private final Integer[][] map;
 
   public TileManager(Game game) {
     this.game = game;
-    this.map = new Integer[game.tileSize][game.tileSize];
+    this.map = new Integer[game.maxWorldColumn][game.maxWorldRow];
     defineTiles();
-    setMap("map_01.txt");
+    setMap("world01.txt");
   }
   
   private void defineTiles() {
     this.tiles = Map.of(
       0, new Tile("grass.png"),
       1, new Tile("wall.png"),
-      2, new Tile("water.png")
+      2, new Tile("water.png"),
+      3, new Tile("earth.png"),
+      4, new Tile("tree.png"),
+      5, new Tile("sand.png")
     );
   }
   
@@ -39,10 +42,10 @@ public class TileManager {
     try {
       var reader = new BufferedReader(new InputStreamReader(map(path)));
 
-      for (int row = 0; row < game.maxScreenRow; row++) {
+      for (int row = 0; row < game.maxWorldRow; row++) {
         var line = reader.readLine();
         var numbers = line.split(" ");        
-        for (int column = 0; column < game.maxScreenColumn; column++) {
+        for (int column = 0; column < game.maxWorldColumn; column++) {
           var number = parseInt(numbers[column]);
           map[column][row] = number;
         }
@@ -56,17 +59,27 @@ public class TileManager {
   }
   
   public void draw(Graphics2D graphics2D) {
-    var x = 0;
-    var y = 0;
-    
-    for (int column = 0; column < game.maxScreenColumn; column++) {
-      for (int row = 0; row < game.maxScreenRow; row++) {
-        var tile = tiles.get(map[column][row]);        
-        graphics2D.drawImage(tile.getImage(), x, y, game.tileSize, game.tileSize, null);
-        y+= game.tileSize;
-      }
-      x+= game.tileSize;
-      y = 0;
+    for (int column = 0; column < game.maxWorldColumn; column++) {
+      for (int row = 0; row < game.maxWorldRow; row++) {
+        var tile = tiles.get(map[column][row]);
+        
+        var worldX = column * game.tileSize;
+        var worldY = row * game.tileSize;
+
+        var player = game.player;
+        
+        var screenX = worldX - player.getWorldX() + player.getScreenX();
+        var screenY = worldY - player.getWorldY() + player.getScreenY();
+        
+        if (
+          worldX + game.tileSize > player.getWorldX() - player.getScreenX() &&
+          worldX - game.tileSize < player.getWorldX() + player.getScreenX() &&
+          worldY + game.tileSize > player.getWorldY() - player.getScreenY() &&
+          worldY - game.tileSize < player.getWorldY() + player.getScreenY()
+        ) {
+          graphics2D.drawImage(tile.getImage(), screenX, screenY, game.tileSize, game.tileSize, null);
+        }       
+      }      
     }
   }
 }

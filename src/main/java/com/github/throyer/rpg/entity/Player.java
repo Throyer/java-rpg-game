@@ -13,21 +13,33 @@ import java.util.stream.Stream;
 import com.github.throyer.rpg.main.Game;
 import com.github.throyer.rpg.main.KeyHandler;
 import com.github.throyer.rpg.utils.Resources;
+import lombok.Getter;
 
 public class Player extends Entity {
   private final Game game;
   private final KeyHandler keys;
+  
+  @Getter
+  private final Integer screenX;
+  
+  @Getter
+  private final Integer screenY;
 
   public Player(Game game, KeyHandler keys) {
     this.game = game;
     this.keys = keys;
+
+    this.screenX = game.screenWidth / 2 - (game.tileSize / 2);
+    this.screenY = game.screenHeight / 2 - (game.tileSize / 2);
+
     this.setDefaultValues();
     this.readImages();
   }
-    
+
   private void setDefaultValues() {
-    this.x = 100;
-    this.y = 100;
+    this.worldX = game.tileSize * 23;
+    this.worldY = game.tileSize * 21;
+    
     this.speed = 4;
     this.direction = DOWN;
   }
@@ -46,35 +58,35 @@ public class Player extends Entity {
       exception.printStackTrace();
     }
   }
-  
-  public void moveUp() {
+
+  private void moveUp() {
     this.direction = UP;
-    this.y -= this.speed;
+    this.worldY -= this.speed;
   }
 
-  public void moveDown() {
+  private void moveDown() {
     this.direction = DOWN;
-    this.y += this.speed;
+    this.worldY += this.speed;
   }
 
-  public void moveLeft() {
+  private void moveLeft() {
     this.direction = LEFT;
-    this.x -= this.speed;
+    this.worldX -= this.speed;
   }
 
-  public void moveRight() {
+  private void moveRight() {
     this.direction = RIGHT;
-    this.x += this.speed;
+    this.worldX += this.speed;
   }
-  
-  public void move() {
+
+  private void move() {
     var directions = Stream.of(
       keys.up(),
       keys.down(),
       keys.left(),
       keys.right()
     );
-    
+
     if (directions.anyMatch(direction -> direction)) {
       if (keys.up()) {
         moveUp();
@@ -105,12 +117,12 @@ public class Player extends Entity {
       }
     }
   }
-  
+
   @Override
   public void update() {
     move();
   }
-  
+
   private void animateMovement(Graphics2D graphics2D) {
     BufferedImage image = null;
 
@@ -153,9 +165,9 @@ public class Player extends Entity {
       }
     }
 
-    graphics2D.drawImage(image, this.x, this.y, game.tileSize, game.tileSize, null);
+    graphics2D.drawImage(image, this.screenX, this.screenY, game.tileSize, game.tileSize, null);
   }
-  
+
   @Override
   public void draw(Graphics2D graphics2D) {
     animateMovement(graphics2D);
